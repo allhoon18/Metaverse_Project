@@ -33,11 +33,11 @@ public class PlayerController : MonoBehaviour
 
     Vector2 MoveInput()
     {
-        float inputX = Input.GetAxisRaw("Horizontal");
-        float inputY = Input.GetAxisRaw("Vertical");
+        float inputX = Input.GetAxis("Horizontal");
+        float inputY = Input.GetAxis("Vertical");
 
         Vector2 velocity = rigidbody.velocity;
-        velocity = new Vector2(inputX, inputY).normalized * speed * Time.deltaTime;
+        velocity = new Vector2(inputX, inputY).normalized * speed;
 
         animationController.Flip(inputX);
 
