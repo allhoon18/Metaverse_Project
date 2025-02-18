@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
         Vector2 velocity = rigidbody.velocity;
         velocity = new Vector2(inputX, inputY).normalized * speed * Time.deltaTime;
 
+        animationController.Flip(inputX);
+
         return velocity;
     }
 
