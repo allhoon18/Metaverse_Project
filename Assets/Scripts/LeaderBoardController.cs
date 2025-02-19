@@ -11,6 +11,7 @@ public class LeaderBoardController : MonoBehaviour
     public GameObject leaderBoardUI;
     public Button leaderBoardCloseButton;
     public TextMeshProUGUI flappyPlaneBestScore;
+    public TextMeshProUGUI flappyPlaneBestScoreName;
 
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class LeaderBoardController : MonoBehaviour
     private void UpdateFlappyPlaneBestScore()
     {
         flappyPlaneBestScore.text = PlayerPrefs.GetInt(GameManager.FlappyPlaneBestScoreKey).ToString();
+        flappyPlaneBestScoreName.text = PlayerPrefs.GetString(GameManager.FlappyPlaneBestScoreNameKey);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

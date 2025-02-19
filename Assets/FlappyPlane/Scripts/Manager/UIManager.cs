@@ -15,6 +15,10 @@ public class UIManager : MonoBehaviour
     public GameObject startSet;
     public TextMeshProUGUI bestScoreText;
 
+    public GameObject bestScoreUpdateSet;
+    public TextMeshProUGUI inputName;
+    public Button inputButton;
+
     GameManager gameManager;
 
     // Start is called before the first frame update
@@ -36,6 +40,8 @@ public class UIManager : MonoBehaviour
 
         exitButton.onClick.AddListener(ExitToMain);
         bestScoreText.text = PlayerPrefs.GetInt(GameManager.FlappyPlaneBestScoreKey).ToString();
+
+        inputButton.onClick.AddListener(SaveName);
     }
 
     public void SetStart()
@@ -64,5 +70,17 @@ public class UIManager : MonoBehaviour
     public void UpdateBestScore(int score)
     {
         bestScoreText.text = score.ToString();
+    }
+
+    public void SaveName()
+    {
+        PlayerPrefs.SetString(GameManager.FlappyPlaneBestScoreNameKey, inputName.text);
+        bestScoreUpdateSet.gameObject.SetActive(false);
+
+    }
+
+    public void ShowBestScoreUpdate(bool isUpdate)
+    {
+        bestScoreUpdateSet.gameObject.SetActive(isUpdate);
     }
 }
