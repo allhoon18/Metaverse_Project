@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
     AnimationController animationController;
 
+    FollowCamera followCamera;
+
     Vector2 velocity;
 
     // Start is called before the first frame update
@@ -17,12 +19,15 @@ public class PlayerController : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
         animationController = GetComponent<AnimationController>();
+        followCamera = GetComponent<FollowCamera>();
     }
 
     // Update is called once per frame
     void Update()
     {
         velocity = MoveInput();
+        JumpPlayer();
+        followCamera.MoveCamera(transform.position);
         
     }
 
