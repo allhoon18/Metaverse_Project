@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -12,6 +13,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI restartText;
     public Button exitButton;
     public GameObject startSet;
+    public TextMeshProUGUI bestScoreText;
 
     GameManager gameManager;
 
@@ -33,6 +35,7 @@ public class UIManager : MonoBehaviour
         exitButton.gameObject.SetActive(false);
 
         exitButton.onClick.AddListener(ExitToMain);
+        bestScoreText.text = PlayerPrefs.GetInt(GameManager.FlappyPlaneBestScoreKey).ToString();
     }
 
     public void SetStart()
@@ -49,11 +52,17 @@ public class UIManager : MonoBehaviour
     public void UpdateScore(int score)
     {
         scoreText.text = score.ToString();
+
     }
 
     public void ExitToMain()
     {
         SceneManager.LoadScene("MainScene");
         GameManager.isGameStart = false;
+    }
+
+    public void UpdateBestScore(int score)
+    {
+        bestScoreText.text = score.ToString();
     }
 }

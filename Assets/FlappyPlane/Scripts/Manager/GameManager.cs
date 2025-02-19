@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     private int currentScore = 0;
 
+    public const string FlappyPlaneBestScoreKey = "FlappyPlaneBestScoreKey"; 
+
     UIManager uimanager;
     public UIManager UIManager { get { return uimanager; } }
 
@@ -58,6 +60,14 @@ public class GameManager : MonoBehaviour
     {
         currentScore += score;
         //Debug.Log("Score : " + currentScore);
+
+        if (currentScore > PlayerPrefs.GetInt(FlappyPlaneBestScoreKey))
+        {
+            PlayerPrefs.SetInt(FlappyPlaneBestScoreKey, currentScore);
+            uimanager.UpdateBestScore(currentScore);
+        }
+            
+
         uimanager.UpdateScore(currentScore);
     }
 }
