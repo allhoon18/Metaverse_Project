@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!isDead)
+        if(GameManager.isGameStart && !isDead)
         {
             if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
@@ -48,7 +48,10 @@ public class Player : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
                 {
-                    gameManager.RestartGame();
+                    if(!GameManager.isGameStart)
+                        gameManager.StartGame();
+                    else
+                        gameManager.RestartGame();
                 }
             }
             else

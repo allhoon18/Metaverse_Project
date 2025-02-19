@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI restartText;
     public Button exitButton;
+    public GameObject startSet;
 
     GameManager gameManager;
 
@@ -27,10 +28,16 @@ public class UIManager : MonoBehaviour
 
         gameManager = GameManager.Instance;
 
+        startSet.SetActive(!GameManager.isGameStart);
         restartText.gameObject.SetActive(false);
         exitButton.gameObject.SetActive(false);
 
         exitButton.onClick.AddListener(ExitToMain);
+    }
+
+    public void SetStart()
+    {
+        startSet.SetActive(false);
     }
 
     public void SetRestart()
@@ -47,5 +54,6 @@ public class UIManager : MonoBehaviour
     public void ExitToMain()
     {
         SceneManager.LoadScene("MainScene");
+        GameManager.isGameStart = false;
     }
 }

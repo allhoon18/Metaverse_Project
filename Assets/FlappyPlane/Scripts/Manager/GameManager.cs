@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     static GameManager gameManager;
     public static GameManager Instance { get { return gameManager; } }
 
+    static public bool isGameStart = false;
+
     private int currentScore = 0;
 
     UIManager uimanager;
@@ -23,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        if(!isGameStart)
+            Time.timeScale = 0f;
         uimanager.UpdateScore(0);
     }
 
@@ -32,11 +36,21 @@ public class GameManager : MonoBehaviour
         uimanager.SetRestart();
     }
 
+    public void StartGame()
+    {
+        isGameStart = true;
+        Time.timeScale = 1f;
+        uimanager.SetStart();
+        Debug.Log("StartGame");
+    }
+
     public void RestartGame()
     {
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
+        Debug.Log("RestartGame");
+        Time.timeScale = 1f;
         SceneManager.LoadScene("FlappyPlaneScene");
     }
 
