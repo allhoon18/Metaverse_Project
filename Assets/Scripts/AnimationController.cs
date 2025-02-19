@@ -9,6 +9,7 @@ public class AnimationController : MonoBehaviour
     SpriteRenderer spriteRenderer;
 
     private static readonly int IsMoving = Animator.StringToHash("isMove");
+    private static readonly int IsJump = Animator.StringToHash("isJump");
 
     private void Awake()
     {
@@ -25,5 +26,10 @@ public class AnimationController : MonoBehaviour
     {
         if(inputX != 0)
             spriteRenderer.flipX = inputX < 0;
+    }
+
+    public void Jump()
+    {
+        animator.SetTrigger(IsJump);
     }
 }
