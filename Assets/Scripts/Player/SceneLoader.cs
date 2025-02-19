@@ -11,13 +11,14 @@ public enum SceneState
 
 public class SceneLoader : MonoBehaviour
 {
-    public static SceneState currentScene;
+    public static SceneState currentScene = SceneState.Main;
 
     public void ChangeScene( string tag )
     {
         switch(tag)
         {
             case "FlappyPlane":
+                currentScene = SceneState.FlappyPlane;
                 SceneManager.LoadScene("FlappyPlaneScene");
                 break;
         }

@@ -14,12 +14,16 @@ public class PlayerController : MonoBehaviour
 
     Vector2 velocity;
 
+    public Vector2[] returnPoint;
+
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         animationController = GetComponent<AnimationController>();
         followCamera = GetComponent<FollowCamera>();
+
+        PlayerReturn(SceneLoader.currentScene);
     }
 
     // Update is called once per frame
@@ -68,5 +72,21 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
             animationController.Jump();
+    }
+
+    void PlayerReturn(SceneState scene)
+    {
+        switch(scene)
+        {
+            case SceneState.Main:
+                transform.position = returnPoint[((int)SceneState.Main)];
+                SceneLoader.currentScene = SceneState.Main;
+                break;
+
+            case SceneState.FlappyPlane:
+                transform.position = returnPoint[((int)SceneState.FlappyPlane)];
+                SceneLoader.currentScene = SceneState.Main;
+                break;
+        }
     }
 }
