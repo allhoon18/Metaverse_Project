@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         velocity = MoveInput();
+        JumpPlayer();
         
     }
 
@@ -33,10 +34,14 @@ public class PlayerController : MonoBehaviour
 
     Vector2 MoveInput()
     {
-        float inputX = Input.GetAxis("Horizontal");
-        float inputY = Input.GetAxis("Vertical");
+        float inputX = Input.GetAxisRaw("Horizontal");
+        float inputY = Input.GetAxisRaw("Vertical");
 
-        Vector2 velocity = rigidbody.velocity;
+        Vector2 velocity;
+
+        if (inputX == 0 && inputY == 0)
+            return velocity = Vector2.zero;
+
         velocity = new Vector2(inputX, inputY).normalized * speed;
 
         animationController.Flip(inputX);
@@ -48,9 +53,15 @@ public class PlayerController : MonoBehaviour
     {
         if (rigidbody == null)
             return;
-            
+
+
         rigidbody.velocity = velocity;
         animationController.Move(velocity);
+    }
 
+    void JumpPlayer()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+            animationController.Jump();
     }
 }
