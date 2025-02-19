@@ -22,10 +22,9 @@ public class AnimationController : MonoBehaviour
         animator.SetBool(IsMoving, obj.magnitude > 0.5f);
     }
 
-    public void Flip(float inputX)
+    public void Flip(bool isLeft)
     {
-        if(inputX != 0)
-            spriteRenderer.flipX = inputX < 0;
+        spriteRenderer.flipX = isLeft;
     }
 
     public void Jump()

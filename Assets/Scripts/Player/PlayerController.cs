@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float speed;
+    [SerializeField] public float speed;
 
     Rigidbody2D rigidbody;
 
@@ -12,9 +12,13 @@ public class PlayerController : MonoBehaviour
 
     FollowCamera followCamera;
 
-    Vector2 velocity;
+    [HideInInspector] public Vector2 velocity;
 
     public Vector2[] returnPoint;
+
+    PlayerInWater playerWaterEffect;
+
+    [HideInInspector] public bool isLeft;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +26,7 @@ public class PlayerController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         animationController = GetComponent<AnimationController>();
         followCamera = GetComponent<FollowCamera>();
+        playerWaterEffect = GetComponent<PlayerInWater>();
 
         PlayerReturn(SceneLoader.currentScene);
     }
@@ -32,7 +37,7 @@ public class PlayerController : MonoBehaviour
         velocity = MoveInput();
         JumpPlayer();
         followCamera.MoveCamera(transform.position);
-
+        playerWaterEffect.OnWaterEffect();
         
     }
 
@@ -53,7 +58,11 @@ public class PlayerController : MonoBehaviour
 
         velocity = new Vector2(inputX, inputY).normalized * speed;
 
-        animationController.Flip(inputX);
+        if (inputX != 0)
+            isLeft = inputX < 0;
+
+        animationController.Flip(isLeft);
+        playerWaterEffect.Flip(isLeft);
 
         return velocity;
     }
@@ -89,4 +98,5 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
+
 }
