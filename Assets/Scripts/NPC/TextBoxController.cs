@@ -17,6 +17,7 @@ public class TextBoxController : MonoBehaviour
 
     private void Update()
     {
+        //대화창이 활성화된 상태에서 마우스 좌클릭을 통해 대화창을 넘어감
         if(Input.GetMouseButtonDown(0) && TextBoxSet.gameObject)
         {
             ShowNextDialogue();
@@ -29,7 +30,7 @@ public class TextBoxController : MonoBehaviour
 
         if (dialogueIndex >= Dialogues.Length)
             dialogueIndex = 0;
-
+        //저장된 대화를 순서대로 전시
         textBox.text = Dialogues[dialogueIndex];
     }
 

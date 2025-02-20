@@ -17,6 +17,7 @@ public class AnimationController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
+    //플레이어 애니메이션을 관리
 
     public void Move(Vector2 obj)
     {

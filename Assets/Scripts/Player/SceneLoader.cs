@@ -11,6 +11,7 @@ public enum SceneState
 
 public class SceneLoader : MonoBehaviour
 {
+    //이동했던 Scene에 따른  귀환지점
     public Vector2[] returnPoint;
 
     public static SceneState currentScene = SceneState.Main;
@@ -38,7 +39,7 @@ public class SceneLoader : MonoBehaviour
             ChangeScene(collision.tag);
         }
     }
-
+    //귀환할 때 이전에 있었던 Scene에 따라 귀환 지점을 결정
     void PlayerReturn()
     {
         switch (currentScene)

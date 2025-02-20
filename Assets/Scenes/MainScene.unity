@@ -12898,9 +12898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 1
-  ridingPos: {x: 2, y: 2}
   ridingSprite: {fileID: 1497523293}
-  onRiding: 0
 --- !u!1 &1618038437
 GameObject:
   m_ObjectHideFlags: 0
@@ -13027,12 +13025,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  animationController: {fileID: 0}
   velocity: {x: 0, y: 0}
-  returnPoint:
-  - {x: 0, y: 0}
-  - {x: 8, y: 3.5}
   isLeft: 0
+  animationController: {fileID: 0}
 --- !u!114 &1618038442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13076,6 +13071,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d7afacce16e5448988779990a9587b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  returnPoint:
+  - {x: 0, y: 0}
+  - {x: 8, y: 3}
 --- !u!114 &1618038445
 MonoBehaviour:
   m_ObjectHideFlags: 0
