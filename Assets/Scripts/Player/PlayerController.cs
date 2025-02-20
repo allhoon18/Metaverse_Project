@@ -14,8 +14,6 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector] public Vector2 velocity;
 
-    public Vector2[] returnPoint;
-
     PlayerInWater playerWaterEffect;
 
     [HideInInspector] public bool isLeft;
@@ -30,8 +28,6 @@ public class PlayerController : MonoBehaviour
         followCamera = GetComponent<FollowCamera>();
         playerWaterEffect = GetComponent<PlayerInWater>();
         ridableObject = GetComponentInChildren<RidableObject>();
-
-        PlayerReturn(SceneLoader.currentScene);
     }
 
     // Update is called once per frame
@@ -84,22 +80,6 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
             animationController.Jump();
-    }
-
-    void PlayerReturn(SceneState scene)
-    {
-        switch(scene)
-        {
-            case SceneState.Main:
-                transform.position = returnPoint[((int)SceneState.Main)];
-                SceneLoader.currentScene = SceneState.Main;
-                break;
-
-            case SceneState.FlappyPlane:
-                transform.position = returnPoint[((int)SceneState.FlappyPlane)];
-                SceneLoader.currentScene = SceneState.Main;
-                break;
-        }
     }
 
 }

@@ -11,7 +11,14 @@ public enum SceneState
 
 public class SceneLoader : MonoBehaviour
 {
+    public Vector2[] returnPoint;
+
     public static SceneState currentScene = SceneState.Main;
+
+    void Start()
+    {
+        PlayerReturn();
+    }
 
     public void ChangeScene( string tag )
     {
@@ -30,6 +37,22 @@ public class SceneLoader : MonoBehaviour
         {
             ChangeScene(collision.tag);
         }
+    }
+
+    void PlayerReturn()
+    {
+        switch (currentScene)
+        {
+            case SceneState.Main:
+                transform.position = returnPoint[((int)SceneState.Main)];
+                break;
+
+            case SceneState.FlappyPlane:
+                transform.position = returnPoint[((int)SceneState.FlappyPlane)];
+                break;
+        }
+
+        currentScene = SceneState.Main;
     }
 
 }
