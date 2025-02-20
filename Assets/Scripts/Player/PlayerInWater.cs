@@ -55,7 +55,7 @@ public class PlayerInWater : MonoBehaviour
         if (waterLayer.value == (waterLayer.value | (1 << collision.gameObject.layer)))
         {
             inWater = true;
-            Debug.Log("water");
+            normalSpeed = playerController.speed;
         }
     }
 

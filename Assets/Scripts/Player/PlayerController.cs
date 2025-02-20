@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 
     Rigidbody2D rigidbody;
 
-    AnimationController animationController;
+    [HideInInspector] public AnimationController animationController;
 
     FollowCamera followCamera;
 
@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector] public bool isLeft;
 
+    RidableObject ridableObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
         animationController = GetComponent<AnimationController>();
         followCamera = GetComponent<FollowCamera>();
         playerWaterEffect = GetComponent<PlayerInWater>();
+        ridableObject = GetComponentInChildren<RidableObject>();
 
         PlayerReturn(SceneLoader.currentScene);
     }
@@ -38,7 +41,7 @@ public class PlayerController : MonoBehaviour
         JumpPlayer();
         followCamera.MoveCamera(transform.position);
         playerWaterEffect.OnWaterEffect();
-        
+        ridableObject.Riding();
     }
 
     private void FixedUpdate()

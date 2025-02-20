@@ -10,6 +10,7 @@ public class AnimationController : MonoBehaviour
 
     private static readonly int IsMoving = Animator.StringToHash("isMove");
     private static readonly int IsJump = Animator.StringToHash("isJump");
+    private static readonly int IsRide = Animator.StringToHash("isRiding");
 
     private void Awake()
     {
@@ -30,5 +31,10 @@ public class AnimationController : MonoBehaviour
     public void Jump()
     {
         animator.SetTrigger(IsJump);
+    }
+
+    public void Ride(bool onRide)
+    {
+        animator.SetBool(IsRide, onRide);
     }
 }
